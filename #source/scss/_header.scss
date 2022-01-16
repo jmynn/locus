@@ -239,21 +239,33 @@ $maxWidthContainer: 1720;
 		height: 100vh;
 		// задний фон бургер-меню
 		// background-color: $white;
-		background-color: $dark-blue;
+		background-color: $white;
 		z-index: 1;
 		transition: transform ease 0.8s, background-color ease 0.6s;
 	}
 
 	&_list {
 		// стилизация бургер-списка
-		@include fz25();
+		@include fz27();
 		@include lh36();
 		text-transform: uppercase;
 		text-align: center;
 		// отступ менюшки сверху
 		transform: translateY(100%);
 		li {
-			margin: 10px 0;
+			margin: 25px 0 10px;
+			position: relative;
+			&::after{
+				content: '';
+				height: 1px;
+				width: 20px;
+				background-color: $dark-green;
+				position: absolute;
+				display: block;
+				left: 50%;
+				transform: translateX(-50%);
+				margin-top: 5px;
+			}
 			a {
 				// стилизация списка - добавить ссылки (а)
 			}
@@ -282,9 +294,6 @@ $maxWidthContainer: 1720;
 ._ttY {
 	// отступ сверху крестика при нажатии
 	transform: translateY(10px);
-	color: rgb(148, 146, 252);
-	background-color: #dfc9d8;
-	// font-weight: ;
 }
 /* --------------- */
 @media (min-width: 1920px) {
@@ -333,4 +342,5 @@ $maxWidthContainer: 1720;
 	.header_block {
 		padding: 20px 25px;
 	}
+	.header_logo svg{ width: 3.6vw; }
 }
