@@ -1,0 +1,336 @@
+$dark-blue: #404242;
+$white: #ffffff;
+$dark-green: #58a9a5;
+$yellow: #fec62d;
+$mint: #ccf0e6;
+$dark-dark-green: #486958;
+$dark-dark-blue: #1c2323;
+$black: #000000;
+/* --------------- */
+@mixin fz18() {
+	@include adaptiv-value('font-size', 18, 12, 0);
+}
+@mixin fz20() {
+	@include adaptiv-value('font-size', 20, 14, 0);
+}
+
+@mixin fz22() {
+	@include adaptiv-value('font-size', 22, 16, 0);
+}
+@mixin fz27() {
+	@include adaptiv-value('font-size', 27, 21, 0);
+}
+@mixin fz37() {
+	@include adaptiv-value('font-size', 37, 31, 0);
+}
+@mixin fz67() {
+	@include adaptiv-value('font-size', 67, 26, 0);
+}
+
+@mixin fz25() {
+	@include adaptiv-value('font-size', 25, 19, 0);
+}
+@mixin fz30() {
+	@include adaptiv-value('font-size', 30, 24, 0);
+}
+@mixin fz40() {
+	@include adaptiv-value('font-size', 40, 34, 0);
+}
+@mixin fz70() {
+	@include adaptiv-value('font-size', 70, 26, 0);
+}
+// ----------------------------------------
+@mixin pr45() {
+	@include adaptiv-value('padding-right', 45, 30, 0);
+}
+@mixin pl45() {
+	@include adaptiv-value('padding-left', 45, 30, 0);
+}
+
+@mixin pr100() {
+	@include adaptiv-value('padding-right', 100, 80, 0);
+}
+@mixin pl100() {
+	@include adaptiv-value('padding-left', 100, 80, 0);
+}
+// ----------------------------------------
+@mixin lh22() {
+	@include adaptiv-value('line-height', 22, 12, 0);
+}
+@mixin lh26() {
+	@include adaptiv-value('line-height', 26, 16, 0);
+}
+@mixin lh36() {
+	@include adaptiv-value('line-height', 36, 24, 0);
+}
+/* --------------- */
+//Адаптивное свойство
+$maxWidth: 1920;
+// данное значение менять по макету
+$maxWidthContainer: 1720;
+
+// minSize - размер, который хотим видеть в итоге на самом маленьком разрешении
+// startSize - это размер, который указан в макете
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+	$addSize: $startSize - $minSize;
+	@if $type==1 {
+		//Только если меньше контейнера
+		#{$property}: $startSize + px;
+		@media (max-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc(
+				#{$minSize + px} + #{$addSize} *
+					((100vw - 320px) / #{$maxWidthContainer - 320})
+			);
+		}
+	} @else if $type==2 {
+		//Только если больше контейнера
+		#{$property}: $startSize + px;
+		@media (min-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc(
+				#{$minSize + px} + #{$addSize} *
+					((100vw - 320px) / #{$maxWidth - 320})
+			);
+		}
+	} @else {
+		//Всегда
+		#{$property}: calc(
+			#{$minSize +
+				px} +
+				#{$addSize} *
+				((100vw - 320px) / #{$maxWidth - 320})
+		);
+	}
+}
+/* --------------- */
+.header {
+	// фон хэдера
+	background-color: rgb(255, 255, 255);
+	// box-shadow: 0 1px 6px 1px rgb(161, 161, 161);
+	margin-bottom: 80px;
+	&_block {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px 0;
+		@include pr100();
+		@include pl100();
+		position: relative;
+		transition: transform ease 0.01s;
+	}
+
+	&_column-1 {
+		// выравнивание логотипа по вертикали по центру
+		margin: auto 0;
+	}
+
+	&_logo {
+		@include fz22();
+		// @include fz25();
+		font-weight: bold;
+		color: $dark-green;
+		display: flex;
+		align-items: center;
+
+		svg {
+			margin-right: 0.8vw;
+			width: 1.3vw;
+			height: 3vh;
+		}
+
+		span {
+			@include fz27();
+		}
+	}
+
+	&_column-2 {
+	}
+	&_column-3 {
+		a {
+			color: $white;
+			background-color: $dark-green;
+			border-radius: 12px;
+			padding: 10px 0;
+			@include pr45();
+			@include pl45();
+			@include fz18();
+
+			&:hover {
+				opacity: 0.8;
+				cursor: pointer;
+			}
+		}
+	}
+
+	&_column-menu {
+		width: 60px;
+		height: 40px;
+		// в обычном состоянии скрыта кнопка меню
+		display: none;
+		// background-color: rgba(255, 0, 0, 0.171);
+		position: relative;
+		span {
+			width: 100%;
+			height: 1px;
+			background-color: $dark-green;
+			position: absolute;
+			z-index: 2;
+			transition: all ease 0.3s;
+			&:first-child {
+				top: 10px;
+			}
+			&:nth-child(2) {
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			&:last-child {
+				bottom: 10px;
+			}
+		}
+	}
+}
+.header-column {
+	//nothing
+	&_body {
+	}
+
+	&_list {
+		display: flex;
+		// стилизация списка сверху
+		// color:rgb(189, 189, 226);
+		// text-transform: uppercase;
+		li {
+			margin: 0 1.5625vw;
+			@include fz22();
+			@include lh36();
+			color: $dark-blue;
+			position: relative;
+			// padding-bottom: 5px;
+			&:hover {
+				color: $dark-green;
+				font-weight: 700;
+				cursor: pointer;
+				&:after {
+					content: '';
+					width: 80%;
+					height: 4px;
+					border-radius: 21px;
+					background-color: $yellow;
+					position: absolute;
+					left: 50%;
+					bottom: 0;
+					transform: translateX(-50%);
+				}
+			}
+		}
+	}
+}
+.header-menu {
+	&_body {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		// исходное положение бургер-меню
+		transform: translateY(-100vh);
+		width: 100vw;
+		// width: 80vw;
+		// высота бургер-меню
+		// height: 300px;
+		height: 100vh;
+		// задний фон бургер-меню
+		// background-color: $white;
+		background-color: $dark-blue;
+		z-index: 1;
+		transition: transform ease 0.8s, background-color ease 0.6s;
+	}
+
+	&_list {
+		// стилизация бургер-списка
+		@include fz25();
+		@include lh36();
+		text-transform: uppercase;
+		text-align: center;
+		// отступ менюшки сверху
+		transform: translateY(100%);
+		li {
+			margin: 10px 0;
+			a {
+				// стилизация списка - добавить ссылки (а)
+			}
+		}
+	}
+}
+._click {
+	z-index: 2;
+	span:first-child {
+		top: 20px;
+		transform: rotate(40deg);
+	}
+	span:nth-child(2) {
+		display: none;
+	}
+	span:last-child {
+		bottom: 20px;
+		transform: rotate(-40deg);
+	}
+}
+._display {
+	display: block;
+	// исх.положение - 100%
+	transform: translateX(0);
+}
+._ttY {
+	// отступ сверху крестика при нажатии
+	transform: translateY(10px);
+	color: rgb(148, 146, 252);
+	background-color: #dfc9d8;
+	// font-weight: ;
+}
+/* --------------- */
+@media (min-width: 1920px) {
+	.header_logo svg {
+		height: 3vh;
+		width: 1vw;
+	}
+}
+
+@media (min-width: 320px) and (max-width: 991px) {
+	// .header_block{padding: 10px 20px;}
+	.header_column-2 {
+		display: none;
+	}
+	.header_column-menu {
+		display: block;
+	}
+	.header {
+		margin-bottom: 30px;
+	}
+	.header_block {
+		padding: 20px 50px;
+	}
+	.header_logo {
+		svg {
+			width: 2.6vw;
+			height: 5vh;
+		}
+		span {
+			@include fz30();
+		}
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	// автоматическе закрытие меню при расширении окна
+	.header-menu_body {
+		transform: translateY(-100%);
+	}
+	.header {
+		margin-bottom: 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	.header_block {
+		padding: 20px 25px;
+	}
+}
