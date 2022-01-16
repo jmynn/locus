@@ -231,7 +231,7 @@ $maxWidthContainer: 1720;
 		left: 0;
 
 		// исходное положение бургер-меню
-		transform: translateY(-100vh);
+		transform: translateY(-200vh);
 		width: 100vw;
 		// width: 80vw;
 		// высота бургер-меню
@@ -241,7 +241,7 @@ $maxWidthContainer: 1720;
 		// background-color: $white;
 		background-color: $white;
 		z-index: 1;
-		transition: transform ease 0.8s, background-color ease 0.6s;
+		transition: transform ease 0.7s, background-color ease 0.5s;
 	}
 
 	&_list {
