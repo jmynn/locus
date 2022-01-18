@@ -816,6 +816,17 @@ body {
 			}
 		}
 	}
+
+	::-webkit-scrollbar {
+		width: 4px;
+	}
+	::-webkit-scrollbar-thumb {
+		background: $mint;
+		border-radius: 21px;
+		&:hover {
+			background: $dark-green;
+		}
+	}
 }
 
 @media (max-width: 767px) {

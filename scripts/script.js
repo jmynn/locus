@@ -4,6 +4,7 @@ window.onload = () => {
         menu.classList.toggle("_click")
         menu.classList.toggle("_ttY")
         document.querySelector(".header-menu_body").classList.toggle("_display")
+        document.body.style.overflowY == 'hidden' ? document.body.style.overflowY = 'auto' : document.body.style.overflowY = 'hidden'
     })
 
     const CLASS_LIST = {

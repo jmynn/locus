@@ -229,7 +229,7 @@ $maxWidthContainer: 1720;
 		position: absolute;
 		top: 0;
 		left: 0;
-
+		overflow-y: auto;
 		// исходное положение бургер-меню
 		transform: translateY(-200vh);
 		width: 100vw;
@@ -245,17 +245,24 @@ $maxWidthContainer: 1720;
 	}
 
 	&_list {
+		padding: 10px 0;
 		// стилизация бургер-списка
 		@include fz27();
 		@include lh36();
 		text-transform: uppercase;
 		text-align: center;
-		// отступ менюшки сверху
-		transform: translateY(100%);
+		// background-color: red;
+		// margin-top: 20%;
+		// transform: translateY(100%);
+		@media (orientation: landscape) {
+			transform: translateY(50%);
+		}
+
 		li {
+			&:first-child{margin: 0px 0 10px;}
 			margin: 25px 0 10px;
 			position: relative;
-			&::after{
+			&::after {
 				content: '';
 				height: 1px;
 				width: 20px;
@@ -342,5 +349,7 @@ $maxWidthContainer: 1720;
 	.header_block {
 		padding: 20px 25px;
 	}
-	.header_logo svg{ width: 3.6vw; }
+	.header_logo svg {
+		width: 3.6vw;
+	}
 }
