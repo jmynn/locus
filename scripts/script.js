@@ -2,7 +2,7 @@ window.addEventListener('load', async () => {
 
     if (navigator.serviceWorker) {
         try{
-            const reg  = await navigator.serviceWorker.register('../sw.js', { scope: '/locus' })
+            const reg  = await navigator.serviceWorker.register('/sw.js', { scope: '/' })
         }
         catch(e){
             console.error(e)
