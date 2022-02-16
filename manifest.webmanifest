@@ -1,0 +1,16 @@
+{
+    "theme_color": "#ccf0e6",
+    "background_color": "#ccf0e6",
+    "display": "standalone",
+    "scope": "",
+    "start_url": ".",
+    "name": "locus",
+    "short_name": "locus",
+    "icons": [
+        {
+            "src": "/img/favicon/favicon.webp",
+            "sizes": "32x32",
+            "type": "image/webp"
+        }
+    ]
+}

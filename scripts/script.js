@@ -1,4 +1,15 @@
-window.onload = () => {
+window.addEventListener('load', async () => {
+
+    if (navigator.serviceWorker) {
+        try{
+            const reg  = await navigator.serviceWorker.register('../sw.js')
+        }
+        catch(e){
+            console.error(e)
+        }
+    }
+
+
     let menu = document.querySelector(".header_column-menu")
     menu.addEventListener("click", () => {
         menu.classList.toggle("_click")
@@ -25,4 +36,4 @@ window.onload = () => {
 
     // заглушка для формы
     document.getElementById(ID.FORM).onsubmit = e => e.preventDefault()
-}
+})
